@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>별찍기</title>
+    <style>
+        .line{
+            border-bottom:1px solid #000;
+            margin:4px 0;
+        }
+    </style>
+    <script>
+        // 5개 5줄
+        for(let i=0; i<5; i++){ // 줄 수 만드는 반복문
+            for(let j=0; j<5; j++){ // 별 갯수
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        document.write('<div class="line"></div>');
+        // 1,2,3,4,5 5줄 순서대로
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j <= i; j++) { 
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        document.write('<div class="line"></div>');
+        // 삼각형반대로
+        for (let i = 0; i < 5; i++) {
+            for (let j = 4; j >= i; j--) { 
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        document.write('<div class="line"></div>');
+        // 여백있는거
+        for (let i = 0; i < 5; i++) {
+            for (let j = 4; j >= i; j--) { 
+                document.write('&nbsp;');
+            }
+            for (let j = 0; j <= i; j++) {
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        // 
+        document.write('<div class="line"></div>');
+        // 여백있는거거꾸로
+        for (let i = 0; i < 5; i++) {
+            for (let j = 0; j <= i; j++) { 
+                document.write('&nbsp;');
+            }
+            for (let j = 4; j >= i; j--) { 
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        document.write('<div class="line"></div>');
+        // 삼각형
+        for(let i=0; i<5; i++){
+            for(let j=4; j>=i; j--){
+                document.write('&nbsp;');
+            }
+            for(let j=0; j<=i; j++){
+                document.write('*');
+            }
+            for(let j=1; j<=i; j++){
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        document.write('<div class="line"></div>');
+        // 다이아몬드
+        for(let i=0; i<5; i++){
+            for(let j=5; j>=i; j--){
+                document.write('&nbsp;');
+            }
+            for(let j=0; j<=i; j++){
+                document.write('*');
+            }
+            for(let j=1; j<=i; j++){
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+        for(let i=0; i<6; i++){        
+            for(let j=0; j<=i; j++){
+                document.write('&nbsp;');
+            }
+            for(let j=5; j>=i; j--){
+                document.write('*');
+            }
+            for(let j=4; j>=i; j--){
+                document.write('*');
+            }
+            document.write('<br>');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>
