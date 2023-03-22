@@ -15,8 +15,6 @@ var game ={
 var userButtons = document.getElementsByClassName('btn-user'); // 유저 슛 버튼
 var computerButtons = document.getElementsByClassName('btn-computer'); // 컴퓨터 슛 버튼
 
-
-
 // 컴퓨터 슛 버튼 눌렀을 때
 function onComputerShoot(){
     if(!game.isComputerTurn){
@@ -53,8 +51,10 @@ function onUserShoot(shootType){
     disableUserButtons(true); // 유저 버튼 비활성화
 
     game.shotsLeft--; // 남은 슛 횟수 차감
-    var shotsLeftElem = document.getElementById('shots-left'); // 남은 슛 횟수 출력 태그
-    shotsLeftElem.innerHTML = game.shotsLeft; 
+    // var shotsLeftElem = document.getElementById('shots-left'); // 남은 슛 횟수 출력 태그
+    var $shotsLeftElem = $('#shots-left');
+    // shotsLeftElem.innerHTML = game.shotsLeft; 
+    $shotsLeftElem.html(game.shotsLeft);
 
     if(game.shotsLeft === 0){ // 남은 슛 횟수가 0일 때
         if(user.score > computer.score){
@@ -72,37 +72,54 @@ function onUserShoot(shootType){
 
 // 시스템 메시지 출력창 함수
 function showText(s){
-    var textElem = document.getElementById('text'); // 하단에 시스템 메시지 출력하는 부분
-    textElem.innerHTML = s;
+    // var textElem = document.getElementById('text'); // 하단에 시스템 메시지 출력하는 부분
+    var $textElem = $('#text');
+    // textElem.innerHTML = s;
+    $textElem.fadeOut(300, function(){
+        $textElem.html(s);
+        $textElem.fadeIn(100);
+    })
 }
 
 // 컴퓨터 점수 관리
 function updateComputerScore(score){
     computer.score += score;
-    var comScoreElem = document.getElementById('computer-score');
-    comScoreElem.innerHTML =  computer.score;
+    // var comScoreElem = document.getElementById('computer-score');
+    var $comScoreElem = $('#computer-score');
+    // comScoreElem.innerHTML =  computer.score;
+    $comScoreElem.html(computer.score);
+    $comScoreElem.animateNumber({
+        number: computer.score,
+    })
 }
 
 // 유저 점수 관리
 function updateUserScore(score){
     user.score += score;
-    var userScoreElem = document.getElementById('user-score');
-    userScoreElem.innerHTML = user.score;
+    // var userScoreElem = document.getElementById('user-score');
+    var $userScoreElem = $('#user-score');
+    // userScoreElem.innerHTML = user.score;
+    $userScoreElem.html(user.score);
+    $userScoreElem.animateNumber({
+        number : user.score,
+    })
 }
 
 // 컴퓨터 슛 버튼 활성화 여부 함수
 function disableComputerButtons(flag){
-    var computerButtons = document.getElementsByClassName('btn-computer');
-    for(var i = 0; i < computerButtons.length; i++){
-        computerButtons[i].disabled = flag;
-    }
+    // var computerButtons = document.getElementsByClassName('btn-computer');
+    // for(var i = 0; i < computerButtons.length; i++){
+    //     computerButtons[i].disabled = flag;
+    // }
+    $('.btn-computer').prop('disabled', flag);
 }
 // 유저 슛 버튼 활성화 여부 함수
 function disableUserButtons(flag){
-    var userButtons = document.getElementsByClassName('btn-user');
-    for (var i = 0; i < userButtons.length; i++){
-        userButtons[i].disabled = flag;
-    }
+    // var userButtons = document.getElementsByClassName('btn-user');
+    // for (var i = 0; i < userButtons.length; i++){
+    //     userButtons[i].disabled = flag;
+    // }
+    $('.btn-user').prop('disabled', flag);
 }
 
 // 점수 차에 따라 컴퓨터의 슛 성공확률 조작
