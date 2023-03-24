@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>ROUTE</title>
+  </head>
+  <div id="app">
+    <ul>
+      <li><a class="route_act" data-page="home" href="javascript:void(0);">home</span></li>
+      <li><a class="route_act" data-page="page1" href="javascript:void(0);">page1</a></li>
+      <li><a class="route_act" data-page="page2" href="javascript:void(0);">page2</a></li>
+      <li><a class="route_act" data-page="page3" href="javascript:void(0);">page3</a></li>
+    </ul>
+    <div id="view">
+      <span>current page : </span><span id="pageName">home</span>
+    </div>
+    <div id="pageContents"></div> <!-- App같은거 -->
+  </div>
+  <script>
+
+
+    var spaViews = [];
+
+    spaViews["home"] = function(){
+      const homePage = function(){
+        return '<div>home<div>'
+      }
+      return homePage(); 
+    }
+
+    // 컴포넌트 만드는거
+    spaViews["page1"] = function(){
+      return '<div>페이지1</div>';
+    }
+
+    spaViews["page2"] = function(){
+      return '<div><h2>페이지2</h2></div>';
+    }
+
+    spaViews["page3"] = function(){
+      return '<div>page3</div>';
+    }
+
+
+    function routehabdler(el){
+      var pageId = el.getAttribute('data-page');  // data-page 속성 변수에 담음
+      
+      const title = pageId; 
+      const url = '/' + pageId;
+      history.pushState(null, title, url);
+
+      document.getElementById("pageName").innerHTML = pageId;
+      document.getElementById("pageContents").innerHTML = spaViews[pageId](); // pageContents 안에 page내용을 넣어주기
+
+    }
+
+    document.addEventListener("DOMContentLoaded", function(){
+      var routeTag = document.querySelectorAll('.route_act');
+
+      for (const button of routeTag) {
+        button.addEventListener('click', function(){
+          routehabdler(this) // 각각의 button을 넣어줌
+        }, false); // false는 이벤트버블링 막는 용도
+      }
+
+
+    });
+  </script>
+</html>

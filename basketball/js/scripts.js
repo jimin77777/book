@@ -12,9 +12,10 @@ var game ={
     isComputerTurn:true,
     shotsLeft:15,
 }
-var userButtons = document.getElementsByClassName('btn-user'); // 유저 슛 버튼
-var computerButtons = document.getElementsByClassName('btn-computer'); // 컴퓨터 슛 버튼
-
+// var userButtons = document.getElementsByClassName('btn-user'); // 유저 슛 버튼
+$userButtons = $('.btn-user');
+// var computerButtons = document.getElementsByClassName('btn-computer'); // 컴퓨터 슛 버튼
+$computerButtons = $('btn-computer');
 // 컴퓨터 슛 버튼 눌렀을 때
 function onComputerShoot(){
     if(!game.isComputerTurn){
@@ -140,3 +141,16 @@ function updateAI(){
         computer.percent3 = 0.23;
     }
 }
+$(function(){
+    showText(3);
+    setTimeout(function(){
+        showText(2);
+        setTimeout(function(){
+            showText(1);;
+            setTimeout(function(){
+                showText('컴퓨터부터 시작합니다!');
+                disableComputerButtons(false);
+            },1000)
+        },1000)
+    }, 1000)
+});
