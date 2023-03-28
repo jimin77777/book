@@ -1,10 +1,8 @@
-var xhr = new XMLHttpRequest();
-
-xhr.onreadystatechange = function(){
-    if(xhr.readyState === XMLHttpRequest.DONE){
-        console.log(xhr.responseText);
-    }
-};
-
-xhr.open('GET', 'http://www.example.com/some-api');
-xhr.send();
+var API_URL = 'https://floating-harbor-78336.herokuapp.com/fastfood';
+$(function(){
+    $('.btn-search').click(function(){
+        $.get(API_URL, {}, function(data){
+            console.log(data)
+        })
+    })
+})
