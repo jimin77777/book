@@ -38,6 +38,9 @@
     spaViews["page3"] = function(){
       return '<div>page3</div>';
     }
+    spaViews["error"] = function(){
+      return '<div>error</div>';
+    }
 
 
     function routehabdler(el){
@@ -48,6 +51,15 @@
       history.pushState(null, title, url);
 
       document.getElementById("pageName").innerHTML = pageId;
+      
+      var useKey = pageId;
+      if( sapViews[useKey] == undefined){
+        useKey = 'error';
+      }
+      var content = sapViews[useKey]();
+
+      document.getElementById("pageContents").innerHTML =  content;
+
       document.getElementById("pageContents").innerHTML = spaViews[pageId](); // pageContents 안에 page내용을 넣어주기
 
     }
